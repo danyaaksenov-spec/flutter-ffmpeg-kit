@@ -34,6 +34,23 @@ modify_podspec() {
         mv "$temp_file" "$file_path"
     fi
 
+    # Replace ffmpeg-kit-ios-*.zip and ffmpeg-kit-macos-*.zip with default_subspec
+    sed -E "s/ffmpeg-kit-ios-[^[:space:]]+\.zip/ffmpeg-kit-ios-${default_subspec}.zip/g" "$file_path" > "$temp_file"
+    mv "$temp_file" "$file_path"
+    sed -E "s/ffmpeg-kit-macos-[^[:space:]]+\.zip/ffmpeg-kit-macos-${default_subspec}.zip/g" "$file_path" > "$temp_file"
+    mv "$temp_file" "$file_path"
+
+    # Rename file to directory + name.podspec
+    local dir_path
+    dir_path=$(dirname "$file_path")
+    local new_file_path="$dir_path/$name.podspec"
+    if [ "$file_path" != "$new_file_path" ]; then
+        mv "$file_path" "$new_file_path"
+        echo "Renamed $file_path to $new_file_path"
+    else
+        echo "No rename needed: $file_path already named $new_file_path"
+    fi
+
     echo "Successfully modified $file_path"
 }
 
@@ -92,15 +109,39 @@ modify_pubspec() {
     echo "Successfully modified $pubspec_file with name=$name, version=$version"
 }
 
-# Example usage
+# Function to read name from pubspec.yaml
+read_pubspec_name() {
+    local pubspec_file=$1
+
+    # Check if file exists
+    if [ ! -f "$pubspec_file" ]; then
+        echo "Error: Pubspec file $pubspec_file not found"
+        exit 1
+    fi
+
+    # Extract name using grep and sed
+    local name
+    name=$(grep -E "^name:[[:space:]]*" "$pubspec_file" | sed -E "s/^name:[[:space:]]*([^[:space:]]+).*/\1/")
+    
+    if [ -z "$name" ]; then
+        echo "Error: Could not extract name from $pubspec_file"
+        exit 1
+    fi
+
+    echo "$name"
+}
+
 main() {
     local current_dir=$(pwd)
-    # Define array of podspec files
-    local podspec_files=("$current_dir/ios/ffmpeg_kit.podspec" "$current_dir/macos/ffmpeg_kit.podspec")
-    # Define Gradle file path
-    local gradle_file="$current_dir/android/build.gradle"
     # Define pubspec file path
     local pubspec_file="$current_dir/pubspec.yaml"
+    # Read name from pubspec.yaml
+    local flutter_package_name
+    flutter_package_name=$(read_pubspec_name "$pubspec_file")
+    # Define array of podspec files
+    local podspec_files=("$current_dir/ios/${flutter_package_name}.podspec" "$current_dir/macos/${flutter_package_name}.podspec")
+    # Define Gradle file path
+    local gradle_file="$current_dir/android/build.gradle"
     local prefix='ffmpeg_kit_'
     local package_name="min_gpl"
     package_name=''

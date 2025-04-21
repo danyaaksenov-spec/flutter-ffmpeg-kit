@@ -20,6 +20,15 @@ Pod::Spec.new do |s|
   s.dependency          'FlutterMacOS'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES' }
 
+  s.prepare_command = <<-CMD
+    download_url="https://github.com/meetleev/flutter-ffmpeg-kit/releases/download/6.0.3/ffmpeg-kit-macos-https.zip" 
+    if [ ! -d "./Frameworks" ]; then
+        echo "Downloading from ${download_url}..."
+        curl -L $download_url -o /tmp/ffmped_kit.zip
+        unzip -o /tmp/ffmped_kit.zip -d Frameworks
+    fi
+  CMD
+
   s.subspec 'min' do |ss|
     ss.source_files         = 'Classes/**/*'
     ss.public_header_files  = 'Classes/**/*.h'
@@ -41,14 +50,6 @@ Pod::Spec.new do |s|
     ss.vendored_frameworks = 'Frameworks/*.framework'
     ss.macos.frameworks = 'VideoToolbox', 'AudioToolbox', 'AVKit', 'CoreAudio', 'CoreImage', 'OpenCL'
     ss.libraries = 'z', 'bz2', 'c++', 'iconv'
-    s.prepare_command = <<-CMD
-        if [ ! -d "./Frameworks" ]; then
-          mkdir -p Frameworks
-          echo "Downloading min-gpl-lts..."
-          curl -L https://github.com/meetleev/flutter-ffmpeg-kit/releases/download/6.0.3/ffmpeg-kit-macos-min-gpl.zip -o /tmp/min-gpl.zip
-          unzip -o /tmp/min-gpl.zip -d Frameworks
-        fi
-    CMD
     ss.osx.deployment_target = '10.15'
   end
 
@@ -59,14 +60,6 @@ Pod::Spec.new do |s|
     ss.vendored_frameworks = 'Frameworks/*.framework'
     ss.macos.frameworks = 'VideoToolbox', 'AudioToolbox', 'AVKit', 'CoreAudio', 'CoreImage', 'OpenCL'
     ss.libraries = 'z', 'bz2', 'c++', 'iconv'
-    s.prepare_command = <<-CMD
-        if [ ! -d "./Frameworks" ]; then
-          mkdir -p Frameworks
-          echo "Downloading min-gpl-lts..."
-          curl -L https://github.com/meetleev/flutter-ffmpeg-kit/releases/download/6.0.3/ffmpeg-kit-macos-min-gpl-LTS.zip -o /tmp/min-gpl-lts.zip
-          unzip -o /tmp/min-gpl-lts.zip -d Frameworks
-        fi
-    CMD
     ss.osx.deployment_target = '10.12'
   end
 
@@ -77,14 +70,6 @@ Pod::Spec.new do |s|
     ss.vendored_frameworks = 'Frameworks/*.framework'
     ss.macos.frameworks = 'VideoToolbox', 'AudioToolbox', 'AVKit', 'CoreAudio', 'CoreImage', 'OpenCL'
     ss.libraries = 'z', 'bz2', 'c++', 'iconv'
-    s.prepare_command = <<-CMD
-        if [ ! -d "./Frameworks" ]; then
-          mkdir -p Frameworks
-          echo "Downloading min-gpl-lts..."
-          curl -L https://github.com/meetleev/flutter-ffmpeg-kit/releases/download/6.0.3/ffmpeg-kit-macos-https.zip -o /tmp/https.zip
-          unzip -o /tmp/https.zip -d Frameworks
-        fi
-    CMD
     ss.osx.deployment_target = '10.15'
   end
 
@@ -95,14 +80,6 @@ Pod::Spec.new do |s|
     ss.vendored_frameworks = 'Frameworks/*.framework'
     ss.macos.frameworks = 'VideoToolbox', 'AudioToolbox', 'AVKit', 'CoreAudio', 'CoreImage', 'OpenCL'
     ss.libraries = 'z', 'bz2', 'c++', 'iconv'
-    s.prepare_command = <<-CMD
-        if [ ! -d "./Frameworks" ]; then
-          mkdir -p Frameworks
-          echo "Downloading min-gpl-lts..."
-          curl -L https://github.com/meetleev/flutter-ffmpeg-kit/releases/download/6.0.3/ffmpeg-kit-macos-https-LTS.zip -o /tmp/https.zip
-          unzip -o /tmp/https.zip -d Frameworks
-        fi
-    CMD
     ss.osx.deployment_target = '10.12'
   end
 
