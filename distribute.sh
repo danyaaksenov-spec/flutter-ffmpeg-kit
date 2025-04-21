@@ -144,8 +144,8 @@ main() {
     local gradle_file="$current_dir/android/build.gradle"
     local prefix='ffmpeg_kit_'
     local package_name="min_gpl"
-    package_name=''
-    local is_lts=!true
+    # package_name=''
+    local is_lts=true
     local version='6.0.3'
     local aarVersion='6.0-2'
     local default_subspec='https'
