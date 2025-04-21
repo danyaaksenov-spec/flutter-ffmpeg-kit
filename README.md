@@ -1,5 +1,4 @@
-# A forked version of ffmpeg_kit with compatibility updates for newer Flutter versions.
-
+A forked version of ffmpeg_kit with compatibility updates for newer Flutter versions.
 This package is based on the original FFmpeg Kit by arthenica, with updates to ensure compatibility with the latest Flutter SDKs.
 
 ### 1. Features
