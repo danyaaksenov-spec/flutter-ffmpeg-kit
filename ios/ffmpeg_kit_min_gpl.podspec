@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'ffmpeg_kit_min_gpl'
-  s.version = '6.0.3'
+  s.version = '6.0.3-LTS'
   s.summary          = 'FFmpeg Kit for Flutter'
   s.description      = 'A Flutter plugin for running FFmpeg and FFprobe commands.'
   s.homepage         = 'https://github.com/arthenica/ffmpeg-kit'
@@ -15,12 +15,12 @@ Pod::Spec.new do |s|
   s.source_files        = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
 
-  s.default_subspec = 'min-gpl'
+  s.default_subspec = 'min-gpl-lts'
   s.dependency          'Flutter'
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
 
   s.prepare_command = <<-CMD
-    download_url="https://github.com/meetleev/flutter-ffmpeg-kit/releases/download/6.0.3/ffmpeg-kit-ios-min-gpl.zip" 
+    download_url="https://github.com/meetleev/flutter-ffmpeg-kit/releases/download/6.0.3/ffmpeg-kit-ios-min-gpl-lts.zip" 
     if [ ! -d "./Frameworks" ]; then
         echo "Downloading from ${download_url}..."
         curl -L $download_url -o /tmp/ffmped_kit.zip

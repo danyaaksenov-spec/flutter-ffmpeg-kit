@@ -35,7 +35,7 @@ Add `ffmpeg_kit` as a dependency in your `pubspec.yaml file`.
 
 ```yaml
 dependencies:
-  ffmpeg_kit: 6.0.3
+  ffmpeg_kit: <latest_version>
 ```
 
 #### 2.1 Packages
@@ -58,7 +58,7 @@ using the following dependency format.
 
 ```yaml
 dependencies:
-  ffmpeg_kit_<package name>: 6.0.3
+  ffmpeg_kit_<package name>: <latest_version>
 ```
 
 Note that hyphens in the package name must be replaced with underscores. Additionally, do not forget to use the package
@@ -70,7 +70,7 @@ In order to install the `LTS` variant, append `-LTS` to the version you have for
 
 ```yaml
 dependencies:
-  ffmpeg_kit: 6.0.3-LTS
+  ffmpeg_kit: <latest_version>-LTS
 ```
 
 #### 2.4 LTS Releases
@@ -105,7 +105,7 @@ The following table shows Android API level, iOS deployment target and macOS dep
 <td align="center">24</td>
 <td align="center">12.1</td>
 <td align="center">10.15</td>
-<td align="center">16</td>
+<td align="center">24</td>
 <td align="center">10</td>
 <td align="center">10.12</td>
 </tr>
