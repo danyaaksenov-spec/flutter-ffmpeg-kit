@@ -36,7 +36,7 @@ class MediaInformationJsonParser {
       return _platform
           .mediaInformationJsonParserFrom(ffprobeJsonOutput)
           .then((properties) {
-        if (properties == null || properties.length == 0) {
+        if (properties == null || properties.isEmpty) {
           return null;
         } else {
           return new MediaInformation(properties);

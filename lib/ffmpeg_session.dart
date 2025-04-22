@@ -110,7 +110,7 @@ class FFmpegSession extends AbstractSession {
   /// Returns the last received statistics entry.
   Future<Statistics?> getLastReceivedStatistics() async =>
       this.getStatistics().then((statistics) {
-        if (statistics.length > 0) {
+        if (statistics.isNotEmpty) {
           return statistics[statistics.length - 1];
         } else {
           return null;
