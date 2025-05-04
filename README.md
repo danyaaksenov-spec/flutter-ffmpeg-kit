@@ -105,7 +105,7 @@ The following table shows Android API level, iOS deployment target and macOS dep
 <td align="center">24</td>
 <td align="center">12.1</td>
 <td align="center">10.15</td>
-<td align="center">24</td>
+<td align="center">21</td>
 <td align="center">10</td>
 <td align="center">10.12</td>
 </tr>

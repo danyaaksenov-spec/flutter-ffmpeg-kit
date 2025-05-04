@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.pod_target_xcconfig = { 'DEFINES_MODULE' => 'YES', 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386' }
 
   s.prepare_command = <<-CMD
-    download_url="https://github.com/meetleev/flutter-ffmpeg-kit/releases/download/6.0.3/ffmpeg-kit-ios-min-gpl-lts.zip" 
+    download_url="https://github.com/meetleev/ffmpeg-kit-prebuilt/releases/download/6.0.3/ffmpeg-kit-ios-min-gpl-lts.zip" 
     if [ ! -d "./Frameworks" ]; then
         echo "Downloading from ${download_url}..."
         curl -L $download_url -o /tmp/ffmped_kit.zip

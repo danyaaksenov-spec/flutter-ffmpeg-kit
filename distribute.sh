@@ -71,7 +71,7 @@ modify_gradle() {
 
     # Replace ffmpeg-kit flavor and version dynamically
     # Match any flavor and version, replace with new flavor and version
-    sed -E "s/implementation 'com\.arthenica:ffmpeg-kit-[^:]+:[^']+'/implementation 'com.arthenica:ffmpeg-kit-${flavor}:${version}'/" "$gradle_file" > "$temp_file"
+    sed -E "s/implementation 'com\.github\.meetleev\.ffmpeg-kit-prebuilt:ffmpeg-kit-[^:]+:[^']+'/implementation 'com.github.meetleev.ffmpeg-kit-prebuilt:ffmpeg-kit-${flavor}:${version}'/" "$gradle_file" > "$temp_file"
 
     # Check if sed made any changes
     if ! cmp -s "$gradle_file" "$temp_file"; then
@@ -147,7 +147,7 @@ main() {
     # package_name=''
     local is_lts=true
     local version='6.0.3'
-    local aarVersion='6.0-2'
+    local aarVersion='6.0.3.1'
     local default_subspec='https'
     case "$package_name" in
         "min_gpl")
@@ -156,7 +156,7 @@ main() {
             if [ "$is_lts" = true ]; then
                 version="$version-LTS"
                 default_subspec="$default_subspec-lts"
-                aarVersion="$aarVersion.LTS"
+                aarVersion="$aarVersion-LTS"
             fi
             ;;
         "min")
